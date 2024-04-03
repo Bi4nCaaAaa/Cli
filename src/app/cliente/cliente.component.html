@@ -1,44 +1,46 @@
-<div class="container bg-light p-4">
-  <div class="row">
-      <div class="col-7 m-auto">
-          <form [formGroup]="clienteFormGroup">
-              <h1 class="text-center">Cadastro de Produtos</h1>
-              <div class="mb-3">
-                  <label for="exampleInputId" class="form-label">ID</label>
-                  <input type="text" class="form-control" formControlName="id" id="exampleInputId"
-                      aria-describedby="id">
-                  <div id="id" class="form-text"></div>
-              </div>
-              <div class="mb-3">
-                  <label for="exampleInputNome" class="form-label">NOME</label>
-                  <input type="text" class="form-control" formControlName="nome" id="exampleInputNome"  aria-describedby="nome">
-                  <div id="nome" class="form-text"></div>
-              </div>
-              <div class="mb-3">
-                  <label for="exampleInputDescricao" class="form-label">Descrição</label>
-                  <input type="text" class="form-control" formControlName="descricao" id="exampleInputDescricao" aria-describedby="descricao">
-                  <div id="descricao"  class="form-text"></div>
-              </div>
-              <button type="submit" class="btn btn-primary" (click)="save()">Cadastrar
-              </button>
-          </form>
-          <h1 class="text-center">Produto</h1>
-          <table class="table table-striped">
-              <thead>
-                  <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Nome</th>
-                      <th scope="col">Descrição</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let cliente of clientes">
-                      <td>{{ cliente.id }}</td>
-                      <td>{{ cliente.nome}}</td>
-                      <td>{{ cliente.descricao }}</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-7 m-auto">
+            <form [formGroup]="clienteFormGroup">
+                <h1 class="text-center">Cadastro de Produtos</h1>
+                <div class="mb-3">
+                    <label for="exampleInputId" class="form-label">ID</label>
+                    <input type="text" class="form-control" formControlName="id" id="exampleInputId" aria-describedby="id">
+                    <div id="id" class="form-text"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputNome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" formControlName="nome" id="exampleInputNome" aria-describedby="nome">
+                    <div id="nome" class="form-text"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputDescricao" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" formControlName="descricao" id="exampleInputDescricao" aria-describedby="descricao">
+                    <div id="descricao" class="form-text"></div>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="save()">Cadastrar</button>
+            </form>
+            <h1 class="text-center">Produto</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cliente of clientes">
+                        <td>{{ cliente.id }}</td>
+                        <td>{{ cliente.nome}}</td>
+                        <td>{{ cliente.descricao }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+</body>
+

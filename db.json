@@ -1,0 +1,21 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Bahiano",
+      "descricao": "54464"
+    },
+    {
+      "id": 2,
+      "nome": "Paraiba",
+      "descricao": "43333"
+    },
+    {
+      "id": 3,
+      "nome": "Paulista",
+      "descricao": "fffff"
+    }
+  ]
+
+  }
+

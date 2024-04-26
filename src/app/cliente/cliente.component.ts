@@ -12,62 +12,91 @@ import { ClienteService } from '../cliente.service';
 })
 export class ClienteComponent implements OnInit {
 
-  clientes: Cliente[] = [];
-  clienteFormGroup: FormGroup;
+  cliente: Cliente[] = [];
+  formGroupCliente: FormGroup;
   isEditing: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private service: ClienteService) {
-    this.clienteFormGroup = formBuilder.group({
-      id:[''],
-      nome:[''],
-      descricao:['']
 
-    });
-  }
 
   ngOnInit(): void {
-   this.service.getCliente().subscribe({
-       next: data =>this.clientes = data
-   });
+    this.loadCliente();
   }
 
-  loadCliente(){
+  loadCliente() {
     this.service.getCliente().subscribe({
-       next: data =>this.clientes = data
+      next: data => this.cliente = data
+    });
+
   }
-);
 
-  save(){
 
-    if(this.isEditing){
-      this.service.update(this.clienteFormGroup.value).subscribe({
-        next: () => {this.loadCliente();this .isEditing = false;this.clienteFormGroup.reset();}
+  constructor(private formBuilder: FormBuilder,
+    private service: ClienteService
+  ) {
+    this.formGroupCliente = formBuilder.group({
+      id: [''],
+      nome: [''],
+      descricao: ['']
+    });
+ }
 
-      })
+
+  save() {
+    if (this.formGroupCliente.value) {
+      if (this.isEditing) {
+        this.service.update(this.formGroupCliente.value).subscribe({
+          next: () => {
+            this.loadCliente();
+            this.isEditing = false;
+             this.formGroupCliente.reset();
+          }
+        })
+      }
+      else {
+        this.service.save(this.formGroupCliente.value).subscribe({
+          next: data => {
+            this.cliente.push(data);
+            this.formGroupCliente.reset();
+          }
+        });
+      }
+
     }
   }
 
-else{
-  
-}
-
-
-
-
-    this. service.save(this.clienteFormGroup.value).subscribe(
-      {
-        next: data => this.clientes.push(data)
-      }
-    );
-  }
-  delete(cliente: Cliente){
+  delete(cliente: any) {
     this.service.delete(cliente).subscribe({
       next: () => this.loadCliente()
     });
   }
-}
-update(cliente:Cliente){
-  this.isEditing
-  this.clienteFormGroup.setValue(cliente);
-}
 
+  edit(cliente: Cliente) {
+    this.formGroupCliente.setValue(cliente);
+    this.isEditing = true;
+  }
+
+  get name(): any {
+    return this.formGroupCliente.get("name");
+  }
+
+  get course(): any {
+    return this.formGroupCliente.get("course");
+  }
+
+
+  update(cliente: Cliente) {
+    this.isEditing = true;
+    this.formGroupCliente.setValue(cliente);
+  }
+
+
+  get naame(): any {
+    return this.formGroupCliente.get('name');
+  }
+
+  get coursee(): any {
+    return this.formGroupCliente.get('course');
+  }
+
+
+}
